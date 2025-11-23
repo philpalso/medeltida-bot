@@ -21,7 +21,7 @@ with open("config.json") as f:
     config = json.load(f)
 
 TOKEN = os.getenv("DISCORD_TOKEN", config.get("TOKEN"))  # Prefer env var for Railway
-CHANNEL_ID = os.getenv("DISCORD_CHANNEL", config.get("CHANNEL_ID"))  # Prefer env var for Railway
+CHANNEL_ID = int(os.getenv("DISCORD_CHANNEL", config.get("CHANNEL_ID")))  # Prefer env var for Railway
 URL = config["URL"]
 CHECK_INTERVAL = config["CHECK_INTERVAL"]
 
@@ -94,7 +94,14 @@ async def check_website():
 
         await asyncio.sleep(CHECK_INTERVAL)
 
-
+async def heartbeat():
+    await bot.wait_until_ready()
+    channel = bot.get_channel(CHANNEL_ID)
+    while True:
+        await channel.send("❤️‍🔥 Heartbeat: I am alive and checking for changes")
+        logging.info("Heartbeat message sent to Discord.")
+        await asyncio.sleep(86400)  # 24 hours in seconds
+        
 # Slash commands
 @bot.tree.command(name="start", description="Start monitoring the festival programme")
 async def start(interaction: discord.Interaction):
@@ -159,10 +166,11 @@ async def on_ready():
         logging.error(f"Error syncing commands: {e}")
 
     # Start heartbeat task
- #   asyncio.create_task(heartbeat())
+    asyncio.create_task(heartbeat())
 
 
 bot.run(TOKEN)
+
 
 
 
