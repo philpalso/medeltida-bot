@@ -1,0 +1,6 @@
+2025-11-23 18:26:36,036 - WARNING - PyNaCl is not installed, voice will NOT be supported
+2025-11-23 18:26:36,037 - WARNING - Privileged message content intent is missing, commands may not work as expected.
+2025-11-23 18:26:36,037 - INFO - logging in using static token
+2025-11-23 18:26:37,168 - INFO - Shard ID None has connected to Gateway (Session ID: 9fe50893a1306bbdc407d4e165b2664c).
+2025-11-23 18:26:39,169 - INFO - Bot logged in as MedeltidsveckanBot#6632
+2025-11-23 18:26:39,408 - INFO - Slash commands synced!
