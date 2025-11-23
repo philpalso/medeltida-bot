@@ -149,15 +149,6 @@ async def show_log(interaction: discord.Interaction):
     await interaction.response.send_message(log_text)
 
 
-async def heartbeat():
-    await bot.wait_until_ready()
-    channel = bot.get_channel(CHANNEL_ID)
-    while True:
-        await channel.send("❤️‍🔥 Heartbeat: I am alive and checking for changes")
-        logging.info("Heartbeat message sent to Discord.")
-        await asyncio.sleep(86400)  # 24 hours in seconds
-
-
 @bot.event
 async def on_ready():
     logging.info(f"Bot logged in as {bot.user}")
@@ -172,6 +163,7 @@ async def on_ready():
 
 
 bot.run(TOKEN)
+
 
 
 
