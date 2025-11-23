@@ -148,6 +148,16 @@ async def show_log(interaction: discord.Interaction):
     log_text = "```\n" + "".join(logs) + "\n```"
     await interaction.response.send_message(log_text)
 
+
+async def heartbeat():
+    await bot.wait_until_ready()
+    channel = bot.get_channel(CHANNEL_ID)
+    while True:
+        logging.info("Heartbeat: Bot is still running.")
+        await channel.send("❤️‍🔥 Heartbeat: I am alive and checking for changes")
+        await asyncio.sleep(86400)  # 24 hours in seconds
+
+
 @bot.event
 async def on_ready():
     logging.info(f"Bot logged in as {bot.user}")
@@ -157,4 +167,9 @@ async def on_ready():
     except Exception as e:
         logging.error(f"Error syncing commands: {e}")
 
+    # Start heartbeat task
+    asyncio.create_task(heartbeat())
+
+
 bot.run(TOKEN)
+
