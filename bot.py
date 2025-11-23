@@ -153,8 +153,8 @@ async def heartbeat():
     await bot.wait_until_ready()
     channel = bot.get_channel(CHANNEL_ID)
     while True:
-        logging.info("Heartbeat: Bot is still running.")
-        await channel.send_message("❤️‍🔥 Heartbeat: I am alive and checking for changes")
+        await channel.send("❤️‍🔥 Heartbeat: I am alive and checking for changes")
+        logging.info("Heartbeat message sent to Discord.")
         await asyncio.sleep(86400)  # 24 hours in seconds
 
 
@@ -172,5 +172,6 @@ async def on_ready():
 
 
 bot.run(TOKEN)
+
 
 
