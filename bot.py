@@ -159,10 +159,11 @@ async def on_ready():
         logging.error(f"Error syncing commands: {e}")
 
     # Start heartbeat task
-    asyncio.create_task(heartbeat())
+ #   asyncio.create_task(heartbeat())
 
 
 bot.run(TOKEN)
+
 
 
 
