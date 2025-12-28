@@ -91,6 +91,7 @@ async def check_website():
 
         except Exception as e:
             logging.error(f"Error checking website: {e}")
+            message += f"📛 Error checking website: {e}"
 
         await asyncio.sleep(CHECK_INTERVAL)
 
@@ -170,6 +171,7 @@ async def on_ready():
 
 
 bot.run(TOKEN)
+
 
 
 
